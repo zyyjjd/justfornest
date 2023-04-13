@@ -25,7 +25,9 @@ export class AppController {
   getUser(): string {
     return 'getUser';
   }
+  //可以匹配到get请求，http://localhost:3000/app/user_xxx这是master分支
 
+  //可以匹配到get请求，http://localhost:3000/app/user_xxx
   @Put('list/:id')
   update(): string {
     return `update`;
