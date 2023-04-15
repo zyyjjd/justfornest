@@ -1,26 +1,28 @@
 /*
- * @Date: 2023-04-12 09:08:58
- * @LastEditTime: 2023-04-12 13:42:20
+ * @Date: 2023-04-15 10:36:24
+ * @LastEditTime: 2023-04-15 11:08:04
  * @FilePath: /justfornest/src/user/entities/user.entity.ts
  * @Description:
  *
  */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-@Entity('user')
+@Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255, nullable: false })
   userName: string;
 
-  @Column()
-  userPassword: number;
+  @Column({ type: 'varchar', length: 255, nullable: false })
+  userPassword: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  create_time: Date;
-
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  update_time: Date;
+  @CreateDateColumn({ type: 'timestamp' })
+  createTime: Date;
 }

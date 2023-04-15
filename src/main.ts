@@ -1,3 +1,10 @@
+/*
+ * @Date: 2023-04-13 15:35:27
+ * @LastEditTime: 2023-04-15 10:19:53
+ * @FilePath: /justfornest/src/main.ts
+ * @Description:
+ *
+ */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './core/filter/http-exception/http-exception.filter';
@@ -20,6 +27,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(3000);
+  await app.listen(3080);
 }
 bootstrap();
