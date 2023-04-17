@@ -1,6 +1,6 @@
 /*
  * @Date: 2023-04-15 10:36:24
- * @LastEditTime: 2023-04-15 11:08:04
+ * @LastEditTime: 2023-04-15 13:47:07
  * @FilePath: /justfornest/src/user/entities/user.entity.ts
  * @Description:
  *

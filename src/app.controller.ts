@@ -1,3 +1,10 @@
+/*
+ * @Date: 2023-04-14 00:54:40
+ * @LastEditTime: 2023-04-17 10:35:42
+ * @FilePath: /justfornest/src/app.controller.ts
+ * @Description:
+ *
+ */
 import { Controller, Get, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 

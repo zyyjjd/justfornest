@@ -1,6 +1,6 @@
 /*
  * @Date: 2023-04-11 14:33:07
- * @LastEditTime: 2023-04-11 16:45:13
+ * @LastEditTime: 2023-04-15 15:25:14
  * @FilePath: /justfornest/src/posts/posts.service.ts
  * @Description: 文章服务
  */
@@ -72,5 +72,9 @@ export class PostsService {
       throw new HttpException(`id为${id}的文章不存在}`, 401);
     }
     return await this.postsRepository.remove(existPost);
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} post`;
   }
 }

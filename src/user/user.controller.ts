@@ -1,6 +1,6 @@
 /*
  * @Date: 2023-04-15 10:36:24
- * @LastEditTime: 2023-04-15 13:33:26
+ * @LastEditTime: 2023-04-17 10:35:26
  * @FilePath: /justfornest/src/user/user.controller.ts
  * @Description:
  *
@@ -14,10 +14,14 @@ import {
   Param,
   Delete,
   Inject,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { InfoService } from 'src/info/info.service';
+import { GlobalModuleService } from 'src/global-module/global-module.service';
+// import { PostsService } from '../posts/posts.service';
+// import { CreateUserDto } from './dto/create-user.dto';
+// import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -26,7 +30,10 @@ export class UserController {
   constructor(
     @Inject('user') private user: UserService,
     @Inject('girlArray') private girl: string[],
-    @Inject('MyFactory') private factory: string,
+    @Inject('MyFactory') private factory: string, // @Inject('Posts') private ps: PostsService,
+    private Info: InfoService,
+    private GlobalModule: GlobalModuleService,
+    @Inject('dynamic') private dynamic: string,
   ) {}
 
   //增加一个用户
@@ -42,6 +49,24 @@ export class UserController {
     return this.girl;
   }
 
+  //用另一个模块中的service
+  @Post('/info')
+  infoFindOne(@Body('id') Body) {
+    return this.Info.findOne(Body);
+  }
+
+  //用全局模块中的service
+  @Get('/global')
+  globalfindAll() {
+    return this.GlobalModule.findAll();
+  }
+
+  //用全局动态模块
+  @Get('/dynamic')
+  dynamicModule() {
+    return this.dynamic;
+  }
+
   //删除一个用户
   @Delete('/delete/:id')
   delteUser(@Param('id') id: string) {
@@ -50,7 +75,9 @@ export class UserController {
 
   //修改一个用户
   @Post('/update/:id')
-  updateUser(@Param('id') id: string) {
+  updateUser(@Param('id', ParseIntPipe) id: number) {
+    console.log(typeof id, '---------<');
+
     return this.user.updateUser(+id);
   }
 
